@@ -1,0 +1,19 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  httpd1:
+    container_name: httpd1
+    image: httpd
+    environment:
+      - VIRTUAL_HOST=httpd1.example.com
+  httpd2:
+    container_name: httpd2
+    image: httpd
+    environment:
+      - VIRTUAL_HOST=httpd2.example.com
